@@ -10,6 +10,95 @@ body {
     align-items: center;
     background: linear-gradient(135deg, #ffd6cf, #f8c7c2);
     font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Calculator and detached cover container */
+.calculator-wrapper {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 32px;
+}
+
+/* Detached cover / taklob */
+.side-cover {
+    width: 390px;
+    max-width: 92vw;
+    background: linear-gradient(145deg, #fff4ec 0%, #f6c3b6 55%, #efad9f 100%);
+    border-radius: 32px;
+    box-shadow: 
+        0 25px 50px rgba(180, 100, 100, 0.22),
+        inset 10px 10px 18px rgba(255, 255, 255, 0.55),
+        inset -10px -10px 18px rgba(175, 85, 75, 0.12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Inner border design */
+.side-cover::before {
+    content: "";
+    position: absolute;
+    inset: 28px;
+    border: 3px solid rgba(180, 100, 90, 0.18);
+    border-radius: 24px;
+}
+
+/* Soft shine effect */
+.side-cover::after {
+    content: "";
+    position: absolute;
+    top: 35px;
+    left: 35px;
+    width: 45%;
+    height: 65%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.35),
+        rgba(255, 255, 255, 0)
+    );
+    border-radius: 25px;
+}
+
+/* Main vertical line sa takip */
+.cover-line {
+    position: absolute;
+    left: 52px;
+    width: 6px;
+    height: 74%;
+    background: linear-gradient(
+        to bottom,
+        rgba(180, 90, 80, 0.12),
+        rgba(160, 75, 65, 0.32),
+        rgba(180, 90, 80, 0.12)
+    );
+    border-radius: 20px;
+}
+
+/* Additional ridge line */
+.cover-line::after {
+    content: "";
+    position: absolute;
+    left: 24px;
+    top: 8%;
+    width: 3px;
+    height: 84%;
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 20px;
+}
+
+/* CASIO text sa takip */
+.cover-text {
+    transform: rotate(90deg);
+    font-size: 1.45rem;
+    font-weight: bold;
+    letter-spacing: 0.6em;
+    color: rgba(120, 65, 55, 0.42);
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.35);
+    z-index: 1;
 }
 
 /* Calculator body */
@@ -65,12 +154,13 @@ button {
     transition: 0.15s ease;
 }
 
-/* Number hover */
+/* Button hover */
 button:hover {
     filter: brightness(1.04);
     transform: translateY(-2px);
 }
 
+/* Button active */
 button:active {
     transform: translateY(4px);
     box-shadow: 
@@ -112,12 +202,33 @@ button:nth-child(15) {
         0 10px 18px rgba(100, 160, 170, 0.2);
 }
 
-/* Responsive for small screens */
-@media (max-width: 420px) {
+/* Responsive for tablets and smaller screens */
+@media (max-width: 900px) {
+    body {
+        padding: 30px;
+    }
+
+    .calculator-wrapper {
+        gap: 20px;
+    }
+
+    .side-cover,
     #calculator {
         width: 340px;
+    }
+
+    #calculator {
         padding: 20px;
         border-radius: 28px;
+    }
+
+    .side-cover {
+        border-radius: 28px;
+    }
+
+    .side-cover::before {
+        inset: 24px;
+        border-radius: 22px;
     }
 
     #display {
@@ -131,5 +242,89 @@ button:nth-child(15) {
 
     button {
         font-size: 1.7rem;
+    }
+
+    .cover-line {
+        left: 42px;
+        width: 5px;
+    }
+
+    .cover-text {
+        font-size: 1.15rem;
+        letter-spacing: 0.45em;
+    }
+}
+
+/* Responsive for small phones */
+@media (max-width: 720px) {
+    .calculator-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .side-cover {
+        width: 340px;
+        height: 220px;
+        max-width: 92vw;
+        border-radius: 28px;
+    }
+
+    .side-cover::before {
+        inset: 22px;
+    }
+
+    .side-cover::after {
+        top: 28px;
+        left: 28px;
+        width: 65%;
+        height: 40%;
+    }
+
+    .cover-line {
+        width: 78%;
+        height: 5px;
+        left: auto;
+        top: 45px;
+    }
+
+    .cover-line::after {
+        left: 0;
+        top: 22px;
+        width: 100%;
+        height: 3px;
+    }
+
+    .cover-text {
+        transform: rotate(0deg);
+    }
+}
+
+@media (max-width: 420px) {
+    .side-cover,
+    #calculator {
+        width: 320px;
+    }
+
+    #calculator {
+        padding: 18px;
+    }
+
+    #display {
+        height: 75px;
+        font-size: 2.1rem;
+    }
+
+    button {
+        font-size: 1.5rem;
+    }
+
+    .side-cover {
+        height: 200px;
+    }
+
+    .cover-text {
+        font-size: 1rem;
+        letter-spacing: 0.38em;
     }
 }
